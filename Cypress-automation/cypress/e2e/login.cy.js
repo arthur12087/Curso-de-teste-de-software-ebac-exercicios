@@ -1,14 +1,15 @@
 /// <reference types="cypress" />
+const perfil = require('../fixtures/perfil.json')
 
 describe('Funcionalidade login', () => {
 
     beforeEach(() => {
-        cy.visit('http://lojaebac.ebaconline.art.br/minha-conta/')
+        cy.visit('/minha-conta/')
     });
 
     it('Deve fazer login com sucesso', () => {
-        cy.get('#username').type('artmanhas@gmail.com')
-        cy.get('#password').type('artmanhas')
+        cy.get('#username').type(perfil.usuario)
+        cy.get('#password').type(perfil.senha, {log: false})
         cy.get('input[name="login"]').click()
 
         cy.get('.page-title').should('contain', 'Minha conta')
